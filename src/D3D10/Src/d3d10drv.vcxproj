@@ -349,27 +349,27 @@
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Klingon Debug|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Nerf Arena Blast Release|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Klingon Release|Win32'">true</GenerateManifest>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Rune 1.00 Release|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Rune 1.00 Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Rune 1.00 Release|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Deus Ex Debug|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Deus Ex Release|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Rune 1.00 Debug|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Rune Debug|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Rune Release|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal Gold Debug|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal Gold Release|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal 224 Debug|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal 224 Release|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal Tournament Debug|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal Tournament Release|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='X-COM Enforcer Debug|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='X-COM Enforcer Release|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Harry Potter Debug|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Harry Potter Release|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Nerf Arena Blast Debug|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Klingon Debug|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Nerf Arena Blast Release|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Klingon Release|Win32'">$(IncludePath);$(DirectXSdkDir)Include;</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Deus Ex Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Deus Ex Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Rune 1.00 Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Rune Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Rune Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal Gold Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal Gold Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal 224 Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal 224 Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal Tournament Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Unreal Tournament Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='X-COM Enforcer Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='X-COM Enforcer Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Harry Potter Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Harry Potter Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Nerf Arena Blast Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Klingon Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Nerf Arena Blast Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Klingon Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Deus Ex Debug|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Deus Ex Release|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Rune 1.00 Debug|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
