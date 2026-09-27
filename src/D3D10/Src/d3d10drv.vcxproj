@@ -729,6 +729,8 @@
     <ClInclude Include="Texture\Precache.h" />
     <ClInclude Include="Texture\TexConverter.h" />
     <ClInclude Include="Texture\TextureCache.h" />
+    <ClInclude Include="..\Games\Klingon\Engine\Inc\AActor.h" />
+    <ClInclude Include="..\Games\XComEnforcer\Engine\Inc\AActor.h" />
     <ClInclude Include="..\Games\DeusEx\Engine\Inc\AActor.h" />
     <ClInclude Include="..\Games\DeusEx\Engine\Inc\ABrush.h" />
     <ClInclude Include="..\Games\DeusEx\Engine\Inc\ACamera.h" />

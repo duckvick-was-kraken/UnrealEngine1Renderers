@@ -4,11 +4,13 @@ src/Games/
 
 # D3D9 headers and build output
 src/D3D9/Games/
+!src/D3D9/Games/*/.gitkeep
 src/D3D9/Build/
 src/D3D9/System/
 
 # D3D10 headers and build output
 src/D3D10/Games/
+!src/D3D10/Games/*/.gitkeep
 src/D3D10/Build/
 src/D3D10/System/
 src/D3D10/_work/
@@ -17,8 +19,10 @@ src/D3D10/packages/
 
 # OpenGL headers and build output
 src/OpenGL/Games/
+!src/OpenGL/Games/*/.gitkeep
 src/OpenGL/Build/
 src/OpenGL/System/
 
 #  DirectX SDK needed for D3D10
-src/dxsdk-jun2010/
+src/dxsdk-jun2010/*
+!src/dxsdk-jun2010/.gitkeep
