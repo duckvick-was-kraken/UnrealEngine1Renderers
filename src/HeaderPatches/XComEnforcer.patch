@@ -1,0 +1,34 @@
+--- Engine/Inc/rad.h	Sat Sep 26 20:25:46 2026
++++ Engine/Inc/rad.h	Sat Sep 26 18:35:39 2026
+@@ -224,7 +224,7 @@
+ #define u8 unsigned char
+ #define u32 unsigned long
+ #define s32 signed long
+-#define f32 float
++#define fl32 float
+ #define f64 double
+ 
+ #if defined(__MWERKS__) || defined(__MRC__)
+--- Engine/Inc/UnActor.h	Sat Sep 26 20:25:46 2026
++++ Engine/Inc/UnActor.h	Sat Sep 26 18:31:32 2026
+@@ -58,7 +58,8 @@
+ //
+ inline AActor* AActor::GetTopOwner()
+ {
+-	for( AActor* Top=this; Top->Owner; Top=Top->Owner );
++	AActor* Top;
++	for( Top=this; Top->Owner; Top=Top->Owner );
+ 	return Top;
+ }
+ 
+--- Engine/Inc/UnModel.h	Sat Sep 26 20:25:47 2026
++++ Engine/Inc/UnModel.h	Sat Sep 26 18:31:13 2026
+@@ -155,7 +155,7 @@
+ 			for( INT i=0; i<Element.Num(); i++ )
+ 				Ar << Element(i);
+ 			Ar << AR_INDEX(_NumZones);
+-			for( i=0; i<_NumZones; i++ )
++			for( int i=0; i<_NumZones; i++ )
+ 				Ar << _Zones[i];
+ 		}
+ 		unguardobj;

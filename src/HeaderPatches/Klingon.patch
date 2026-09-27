@@ -1,0 +1,12 @@
+--- Engine/Inc/UnActor.h	Sat Sep 26 20:25:07 2026
++++ Engine/Inc/UnActor.h	Sat Sep 26 18:29:16 2026
+@@ -58,7 +58,8 @@
+ //
+ inline AActor* AActor::GetTopOwner()
+ {
+-	for( AActor* Top=this; Top->Owner; Top=Top->Owner );
++	AActor* Top;
++	for( Top=this; Top->Owner; Top=Top->Owner );
+ 	return Top;
+ }
+ 

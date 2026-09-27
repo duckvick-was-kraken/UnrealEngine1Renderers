@@ -1,0 +1,23 @@
+--- Engine/Inc/UnActor.h	Sat Sep 26 20:24:50 2026
++++ Engine/Inc/UnActor.h	Sat Sep 26 18:24:14 2026
+@@ -58,7 +58,8 @@
+ //
+ inline AActor* AActor::GetTopOwner()
+ {
+-	for( AActor* Top=this; Top->Owner; Top=Top->Owner );
++	AActor* Top;
++	for( Top=this; Top->Owner; Top=Top->Owner );
+ 	return Top;
+ }
+ 
+--- Engine/Inc/UnModel.h	Sat Sep 26 20:24:50 2026
++++ Engine/Inc/UnModel.h	Sat Sep 26 18:23:13 2026
+@@ -154,7 +154,7 @@
+ 			for( INT i=0; i<Element.Num(); i++ )
+ 				Ar << Element(i);
+ 			Ar << AR_INDEX(_NumZones);
+-			for( i=0; i<_NumZones; i++ )
++			for( int i=0; i<_NumZones; i++ )
+ 				Ar << _Zones[i];
+ 		}
+ 		unguardobj;

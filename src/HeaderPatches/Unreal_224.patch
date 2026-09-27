@@ -1,0 +1,216 @@
+--- Core/Inc/UnMath.h	Sat Sep 26 20:25:23 2026
++++ Core/Inc/UnMath.h	Sat Sep 26 19:10:55 2026
+@@ -5,6 +5,17 @@
+ 	Revision history:
+ 		* Created by Tim Sweeney
+ =============================================================================*/
++/*-----------------------------------------------------------------------------
++	Local corrections for a conforming compiler.
++
++	This file shipped with the Unreal 224 SDK and predates standard C++. The only edit is
++	FIntersectPlanes2, which was declared with no return type and so relied on implicit int. It
++	returns 1 or 0 and its sibling FIntersectPlanes3 beside it is already declared UBOOL, which is
++	what Unreal 226 corrected this one to.
++
++	See patch_unreal_224_sdk.ps1 at the repository root for why this is here rather than in the
++	renderers' own headers.
++-----------------------------------------------------------------------------*/
+ 
+ /*-----------------------------------------------------------------------------
+ 	Defintions.
+@@ -1563,7 +1574,7 @@
+ // Compute intersection point and direction of line joining two planes.
+ // Return 1 if valid, 0 if infinite.
+ //
+-inline FIntersectPlanes2( FVector& I, FVector& D, const FPlane& P1, const FPlane& P2 )
++inline UBOOL FIntersectPlanes2( FVector& I, FVector& D, const FPlane& P1, const FPlane& P2 )
+ {
+ 	guard(FIntersectPlanes2);
+ 
+--- Core/Inc/UnTemplate.h	Sat Sep 26 20:25:24 2026
++++ Core/Inc/UnTemplate.h	Sat Sep 26 19:10:59 2026
+@@ -5,6 +5,28 @@
+ 	Revision history:
+ 		* Created by Tim Sweeney
+ =============================================================================*/
++/*-----------------------------------------------------------------------------
++	Local corrections for a conforming compiler.
++
++	This file shipped with the Unreal 224 SDK and predates standard C++. The changes below are the
++	only edits to it, and each one is how Unreal 226 already spells the same code:
++
++	* The ten explicit TTypeInfo specialisations derived from TTypeInfoBase<T>, naming a template
++	  parameter that is not in scope in a specialisation. Each now names its own type, so
++	  TTypeInfo<INT> derives from TTypeInfoBase<INT> and inherits the ConstInitType that TMap and
++	  TArray ask it for.
++
++	* TMap::TPair, TMap::Add/AddUnique/Set/Remove/RemovePair and TMap::TFinder took
++	  TTypeInfo<TK>::ConstInitType without 'typename'. It is a dependent type and needs the keyword.
++
++	* FString::InStrRight read its inner loop counter after the loop, which is out of scope. The
++	  declaration is hoisted, leaving the loop and the read as they were.
++
++	The renderers do not call any of this themselves; it has to compile because Core.h reaches it.
++
++	See patch_unreal_224_sdk.ps1 at the repository root for why these are here rather than in the
++	renderers' own headers.
++-----------------------------------------------------------------------------*/
+ 
+ /*-----------------------------------------------------------------------------
+ 	Type information.
+@@ -21,43 +43,43 @@
+ template <class T> struct TTypeInfo : public TTypeInfoBase<T>
+ {
+ };
+-template<> struct TTypeInfo<FString> : public TTypeInfoBase<T>
++template<> struct TTypeInfo<FString> : public TTypeInfoBase<FString>
+ {
+ 	typedef const TCHAR* ConstInitType;
+ };
+-template<> struct TTypeInfo<BYTE> : public TTypeInfoBase<T>
++template<> struct TTypeInfo<BYTE> : public TTypeInfoBase<BYTE>
+ {
+ 	static UBOOL NeedsDestructor() {return 0;}
+ };
+-template<> struct TTypeInfo<SBYTE> : public TTypeInfoBase<T>
++template<> struct TTypeInfo<SBYTE> : public TTypeInfoBase<SBYTE>
+ {
+ 	static UBOOL NeedsDestructor() {return 0;}
+ };
+-template<> struct TTypeInfo<ANSICHAR> : public TTypeInfoBase<T>
++template<> struct TTypeInfo<ANSICHAR> : public TTypeInfoBase<ANSICHAR>
+ {
+ 	static UBOOL NeedsDestructor() {return 0;}
+ };
+-template<> struct TTypeInfo<INT> : public TTypeInfoBase<T>
++template<> struct TTypeInfo<INT> : public TTypeInfoBase<INT>
+ {
+ 	static UBOOL NeedsDestructor() {return 0;}
+ };
+-template<> struct TTypeInfo<DWORD> : public TTypeInfoBase<T>
++template<> struct TTypeInfo<DWORD> : public TTypeInfoBase<DWORD>
+ {
+ 	static UBOOL NeedsDestructor() {return 0;}
+ };
+-template<> struct TTypeInfo<_WORD> : public TTypeInfoBase<T>
++template<> struct TTypeInfo<_WORD> : public TTypeInfoBase<_WORD>
+ {
+ 	static UBOOL NeedsDestructor() {return 0;}
+ };
+-template<> struct TTypeInfo<SWORD> : public TTypeInfoBase<T>
++template<> struct TTypeInfo<SWORD> : public TTypeInfoBase<SWORD>
+ {
+ 	static UBOOL NeedsDestructor() {return 0;}
+ };
+-template<> struct TTypeInfo<QWORD> : public TTypeInfoBase<T>
++template<> struct TTypeInfo<QWORD> : public TTypeInfoBase<QWORD>
+ {
+ 	static UBOOL NeedsDestructor() {return 0;}
+ };
+-template<> struct TTypeInfo<SQWORD> : public TTypeInfoBase<T>
++template<> struct TTypeInfo<SQWORD> : public TTypeInfoBase<SQWORD>
+ {
+ 	static UBOOL NeedsDestructor() {return 0;}
+ };
+@@ -1052,7 +1074,8 @@
+ 	{
+ 		for( INT i=Len()-1; i>=0; i-- )
+ 		{
+-			for( INT j=0; SubStr[j]; j++ )
++			INT j;
++			for( j=0; SubStr[j]; j++ )
+ 				if( (*this)(i+j)!=SubStr[j] )
+ 					break;
+ 			if( !SubStr[j] )
+@@ -1258,7 +1281,7 @@
+ 		INT HashNext;
+ 		TK Key;
+ 		TI Value;
+-		TPair( TTypeInfo<TK>::ConstInitType InKey, TTypeInfo<TI>::ConstInitType InValue )
++		TPair( typename TTypeInfo<TK>::ConstInitType InKey, typename TTypeInfo<TI>::ConstInitType InValue )
+ 		: Key( InKey ), Value( InValue )
+ 		{}
+ 		TPair()
+@@ -1348,7 +1371,7 @@
+ 		Rehash();
+ 		unguardSlow;
+ 	}
+-	TI& Add( TTypeInfo<TK>::ConstInitType InKey, TTypeInfo<TI>::ConstInitType InValue )
++	TI& Add( typename TTypeInfo<TK>::ConstInitType InKey, typename TTypeInfo<TI>::ConstInitType InValue )
+ 	{
+ 		guardSlow(TMap::Add);
+ 		TPair& Pair   = *new(Pairs)TPair( InKey, InValue );
+@@ -1363,14 +1386,14 @@
+ 		return Pair.Value;
+ 		unguardSlow;
+ 	}
+-	TI& AddUnique( TTypeInfo<TK>::ConstInitType InKey, TTypeInfo<TI>::ConstInitType InValue )
++	TI& AddUnique( typename TTypeInfo<TK>::ConstInitType InKey, typename TTypeInfo<TI>::ConstInitType InValue )
+ 	{
+ 		for( INT i=Hash[(GetTypeHash(InKey) & (HashCount-1))]; i!=INDEX_NONE; i=Pairs(i).HashNext )
+ 			if( Pairs(i).Key==InKey && Pairs(i).Value==InValue )
+ 				return Pairs(i).Value;
+ 		return Add( InKey, InValue );
+ 	}
+-	TI& Set( TTypeInfo<TK>::ConstInitType InKey, TTypeInfo<TI>::ConstInitType InValue )
++	TI& Set( typename TTypeInfo<TK>::ConstInitType InKey, typename TTypeInfo<TI>::ConstInitType InValue )
+ 	{
+ 		guardSlow(TMap::Set);
+ 		for( INT i=Hash[(GetTypeHash(InKey) & (HashCount-1))]; i!=INDEX_NONE; i=Pairs(i).HashNext )
+@@ -1379,7 +1402,7 @@
+ 		return Add( InKey, InValue );
+ 		unguardSlow;
+ 	}
+-	INT Remove( TTypeInfo<TK>::ConstInitType InKey )
++	INT Remove( typename TTypeInfo<TK>::ConstInitType InKey )
+ 	{
+ 		guardSlow(TMap::Remove);
+ 		INT Count=0;
+@@ -1391,7 +1414,7 @@
+ 		return Count;
+ 		unguardSlow;
+ 	}
+-	INT RemovePair( TTypeInfo<TK>::ConstInitType InKey, TTypeInfo<TI>::ConstInitType InValue )
++	INT RemovePair( typename TTypeInfo<TK>::ConstInitType InKey, typename TTypeInfo<TI>::ConstInitType InValue )
+ 	{
+ 		guardSlow(TMap::Remove);
+ 		INT Count=0;
+@@ -1475,7 +1498,7 @@
+ 	class TFinder
+ 	{
+ 	public:
+-		TFinder( TMap& InMap, TTypeInfo<TK>::ConstInitType InKey )
++		TFinder( TMap& InMap, typename TTypeInfo<TK>::ConstInitType InKey )
+ 		: Key( InKey )
+ 		, Map( InMap )
+ 		, Index( -1 )
+--- Engine/Inc/UnActor.h	Sat Sep 26 20:25:24 2026
++++ Engine/Inc/UnActor.h	Sat Sep 26 19:10:55 2026
+@@ -7,6 +7,17 @@
+         * Aug 30, 1996: Mark added PLevel
+ 		* Oct 19, 1996: Tim redesigned to eliminate redundency
+ =============================================================================*/
++/*-----------------------------------------------------------------------------
++	Local corrections for a conforming compiler.
++
++	This file shipped with the Unreal 224 SDK and predates standard C++. The only edit is in
++	AActor::GetTopOwner, which declared its loop variable in the for-init and then returned it
++	after the loop, where it is out of scope. The declaration is hoisted, which is exactly what
++	Unreal 226 ships.
++
++	See patch_unreal_224_sdk.ps1 at the repository root for why this is here rather than in the
++	renderers' own headers.
++-----------------------------------------------------------------------------*/
+ 
+ /*-----------------------------------------------------------------------------
+ 	FActorLink.
+@@ -58,7 +69,8 @@
+ //
+ inline AActor* AActor::GetTopOwner()
+ {
+-	for( AActor* Top=this; Top->Owner; Top=Top->Owner );
++	AActor* Top;
++	for( Top=this; Top->Owner; Top=Top->Owner );
+ 	return Top;
+ }
+ 
