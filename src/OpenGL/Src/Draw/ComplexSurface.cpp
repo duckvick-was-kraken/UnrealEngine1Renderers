@@ -216,7 +216,7 @@ void UOpenGLRenderDevice::DrawComplexSurfaceChunk(const FSurfaceInfo &Surface, c
 	m_rpForceSingle = false;
 	//Valid only if the first pass wrote depth.
 	m_rpMasked = ((PolyFlags & PF_Masked) != 0) &&
-		(((PolyFlags & (PF_Translucent | PF_Modulated | PF_Highlighted)) == 0) || ((PolyFlags & PF_Occlude) != 0));
+		(((PolyFlags & (PF_Translucent | PF_Modulated)) == 0) || ((PolyFlags & PF_Occlude) != 0));
 	m_rpSetDepthEqual = false;
 
 
