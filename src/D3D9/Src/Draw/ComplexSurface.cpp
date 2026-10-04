@@ -169,7 +169,7 @@ void UD3D9RenderDevice::DrawComplexSurfaceChunk(FSurfaceInfo &Surface, const FSu
 	m_rpForceSingle = false;
 	//Valid only if the first pass wrote depth for the depth-equal test.
 	m_rpMasked = ((PolyFlags & PF_Masked) != 0) &&
-		(((PolyFlags & (PF_Translucent | PF_Modulated | PF_Highlighted)) == 0) || ((PolyFlags & PF_Occlude) != 0));
+		(((PolyFlags & (PF_Translucent | PF_Modulated)) == 0) || ((PolyFlags & PF_Occlude) != 0));
 	m_rpSetDepthEqual = false;
 	m_rpColor = 0xFFFFFFFF;
 

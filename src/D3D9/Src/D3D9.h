@@ -917,7 +917,7 @@ class UD3D9RenderDevice : public URenderDevice {
 			return (PolyFlags & PF_Masked) != 0;
 		}
 #endif
-		return (PolyFlags & (PF_Translucent | PF_Modulated | PF_Highlighted)) != 0;
+		return (PolyFlags & (PF_Translucent | PF_Modulated)) != 0;
 	}
 	//@}
 
@@ -1579,7 +1579,7 @@ class UD3D9RenderDevice : public URenderDevice {
 			}
 		} else
 #endif
-			if (!(PolyFlags & (PF_Translucent | PF_Modulated | PF_Highlighted))) {
+			if (!(PolyFlags & (PF_Translucent | PF_Modulated))) {
 			PolyFlags |= PF_Occlude;
 		} else if (PolyFlags & PF_Translucent) {
 			PolyFlags &= ~PF_Masked;
