@@ -92,7 +92,6 @@ void UD3D9RenderDevice::StaticConstructorBody() {
 #ifndef UTGLR_KLINGON_BUILD
 	SC_AddBoolConfigParam(2, TEXT("S3TC"), CPP_PROPERTY_LOCAL(UseS3TC), UTGLR_DEFAULT_UseS3TC);
 #else
-	UseS3TC = 0;
 #endif
 	SC_AddBoolConfigParam(1, TEXT("16BitTextures"), CPP_PROPERTY_LOCAL(Use16BitTextures), 0);
 	SC_AddBoolConfigParam(0, TEXT("565Textures"), CPP_PROPERTY_LOCAL(Use565Textures), 0);

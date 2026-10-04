@@ -108,8 +108,6 @@ void UOpenGLRenderDevice::StaticConstructorBody() {
 #ifndef UTGLR_KLINGON_BUILD
 	SC_AddBoolConfigParam(1, TEXT("S3TC"), CPP_PROPERTY_LOCAL(UseS3TC), UTGLR_DEFAULT_UseS3TC);
 #else
-	//Forced off on this build.
-	UseS3TC = 0;
 #endif
 	SC_AddBoolConfigParam(0, TEXT("16BitTextures"), CPP_PROPERTY_LOCAL(Use16BitTextures), 0);
 	SC_AddIntConfigParam(TEXT("Anisotropy"), CPP_PROPERTY_LOCAL(MaxAnisotropy), 8);
