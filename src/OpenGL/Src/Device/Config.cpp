@@ -45,9 +45,9 @@ void UOpenGLRenderDevice::StaticConstructorBody() {
 	guard(UOpenGLRenderDevice::StaticConstructor);
 
 	//Not registered on Klingon.
-	//Deus Ex and Rune ship uncompressed content.
+	//Deus Ex and Rune ship uncompressed content, but New Vision for DX uses compressed, so default on
 #ifndef UTGLR_KLINGON_BUILD
-#if defined UTGLR_DX_BUILD || defined UTGLR_RUNE_BUILD
+#if defined UTGLR_RUNE_BUILD
 	const UBOOL UTGLR_DEFAULT_UseS3TC = 0;
 #else
 	const UBOOL UTGLR_DEFAULT_UseS3TC = 1;
