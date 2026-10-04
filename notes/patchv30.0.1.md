@@ -8,6 +8,6 @@ Add your patchnotes for release v30.0.1 here
 <details>
 <summary>Click to expand Minor Changes</summary>
 
-  - Something Minor
+  - Do not mask Highlighted polyflags when drawing complex geometry, to allow shadows to draw properly with semi-translucent geometry.
 
 </details>
