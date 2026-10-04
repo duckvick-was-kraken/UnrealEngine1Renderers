@@ -2,6 +2,8 @@
 
 # [DOWNLOAD HERE](https://github.com/theastropath/UnrealEngine1Renderers/releases)
 
+For information regarding the settings, please [SEE THIS PAGE](https://github.com/theastropath/UnrealEngine1Renderers/blob/main/notes/RendererSettings.md)
+
 Newly updated renderers for various Unreal Engine 1 games.
 
  - DirectX 9
