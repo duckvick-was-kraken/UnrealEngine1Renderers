@@ -32,7 +32,7 @@ if errorlevel 1 (
 	exit /b 1
 )
 
-set "GAMEDIR=%ROOT%\Games\%GAME%"
+set "GAMEDIR=%ROOT%\..\Games\%GAME%"
 if not exist "%GAMEDIR%\Core\Inc\Core.h" (
 	echo [error] Game SDK not found at "%GAMEDIR%".
 	exit /b 1

@@ -9,7 +9,7 @@ This page should explain all of the settings available in the renderers.
 | Setting Name | Direct3D 9 | Direct3D 10 | OpenGL | Description |
 | ------------ | :--------: | :---------: | :----: | ----------- |
 | 16BitTextures | ✅ | ❌ | ✅ | Enables lower quality, more compact, textures.  This may increase performance. |
-| 565Textures | ✅ | ❌ | ❌ | ? |
+| 565Textures | ✅ | ❌ | ❌ | Enables R5G6B5 pixel format with 5 bits for red, 6 bits for green, and 5 bits for blue. |
 | AlphaPalette | ❌ | ❌ | ✅ | Workaround for very old GeForce drivers. This should generally be set to true, unless issues are seen. |
 | AlphaToCoverage | ❌ | ✅ | ❌ | Smoothens the edges of 'masked' textures such as grates and leaves. Unfortunately, this does lead to artifacts where the textures don't tile (example). Requires at least 4x anti aliasing enabled to take effect. Valid settings: true/false. Default: false. Note: on some hardware this setting seems to result in black backgrounds around HUD icons, etc. I suspect this is a driver issue. |
 | Anisotropy | ✅ | ✅ | ✅ | Controls anisotropic texture filtering, which makes textures look less blurry at a distance.  0 is disabled, 1 is isotropic texture filtering, anything higher (up to 16) is the maximum degree of anisotropy to use for texture filtering. |

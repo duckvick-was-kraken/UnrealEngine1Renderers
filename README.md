@@ -33,7 +33,7 @@ These renderers are built for the following games:
 
 ### Prerequisites
  * "DirectX SDK (June 2010)" from [HERE](https://www.microsoft.com/en-ca/download/details.aspx?id=6812) extracted, place the contents of the extracted "DXSDK" folder into a folder called "dxsdk-jun2010" in the "src" directory of this repository, alongside the "D3D10" directory.
- * Extract the "Games" directory from the [game headers](https://www.kentie.net/article/d3d10drv/files/src/games.zip) into each of the "D3D9", "D3D10", "OpenGL" directories of this repository, so that there is a "Games" folder alongside the "src" folder of each.
+ * Extract the "Games" directory from the [game headers](https://www.kentie.net/article/d3d10drv/files/src/games.zip) into the common "Games" directory of this repository in the "src" folder (Alongside the "D3D9", "D3D10", "OpenGL" folders)
  * Grab copies of the headers for Unreal 224v, Nerf Arena Blast, Klingon Honor Guard, Harry Potter, and X-Com: Enforcer from [HERE](https://coding.hanfling.de/launch/) and extract their contents into "Unreal_224", "Nerf", "Klingon", "HarryPotter", and "XComEnforcer" directories respectively in the "Games" directory.
    * Apply the patches from the "HeaderPatches" directory to the set of headers associated with each patch.  This step is necessary, as these headers will not compile otherwise.
 

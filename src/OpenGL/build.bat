@@ -9,7 +9,7 @@ setlocal
 set CONFIG=Release
 if /i "%~1"=="debug" set CONFIG=Debug
 
-rem Game SDKs live under Games\. Which games there are, and what each asks of the build,
+rem Game SDKs live under ..\Games\. Which games there are, and what each asks of the build,
 rem is Shared\gamedefs.bat. Called here with no argument, which sets only ALL_GAMES: that
 rem is all this needs to expand "all" below. The per-game call is in :build.
 call "%~dp0..\Shared\gamedefs.bat"
@@ -60,8 +60,8 @@ if errorlevel 1 (
 	exit /b 1
 )
 
-if not exist "Games\%GAME%\Core\Inc\Core.h" (
-	echo ERROR: Game SDK not found at "Games\%GAME%".
+if not exist "..\Games\%GAME%\Core\Inc\Core.h" (
+	echo ERROR: Game SDK not found at "..\Games\%GAME%".
 	exit /b 1
 )
 
@@ -72,9 +72,9 @@ rem errors that read as a broken toolchain, not as an unpatched SDK. The script 
 rem into every file it edits, so ask for it here instead. Harry Potter's corrections are made by hand
 rem and leave no marker, which is why only this game is checked; see the note beside /wd4430 below.
 if /i "%GAME%"=="Unreal_224" (
-	findstr /c:"Local corrections for a conforming compiler" "Games\%GAME%\Core\Inc\UnTemplate.h" >nul 2>&1
+	findstr /c:"Local corrections for a conforming compiler" "..\Games\%GAME%\Core\Inc\UnTemplate.h" >nul 2>&1
 	if errorlevel 1 (
-		echo ERROR: The Unreal 224 SDK under "Games\%GAME%" has not been patched.
+		echo ERROR: The Unreal 224 SDK under "..\Games\%GAME%" has not been patched.
 		echo        Run patch_unreal_224_sdk.ps1 at the repository root, then build again.
 		exit /b 1
 	)
@@ -141,7 +141,7 @@ if defined GAMEWARNINGS set COMMON=%COMMON% %GAMEWARNINGS%
 rem ..\Shared goes in as a plain /I, not /external:I: it holds this project's own code -
 rem the build-flag ladder, the red-black tree, the selection clipper, and the job system and
 rem frame arena the siblings use - and /W4 should apply to it as it does to Src.
-set INCLUDES=/external:I"Games\%GAME%\Core\Inc" /external:I"Games\%GAME%\Engine\Inc" /I"..\Shared"
+set INCLUDES=/external:I"..\Games\%GAME%\Core\Inc" /external:I"..\Games\%GAME%\Engine\Inc" /I"..\Shared"
 
 rem Each configuration adds only what differs from COMMON.
 rem /Gw is Release-only for the same reason /GF and /Gy are: it splits globals into their own
@@ -238,7 +238,7 @@ link /nologo /DLL /INCREMENTAL:NO /MACHINE:X86 /SUBSYSTEM:WINDOWS ^
 	/OUT:"%DLLDIR%\OpenGL1xDrv.dll" /IMPLIB:"%OUTDIR%\OpenGL1xDrv.lib" ^
 	!OBJECTS! ^
 	kernel32.lib user32.lib gdi32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib ^
-	winmm.lib "Games\%GAME%\Core\Lib\Core.lib" "Games\%GAME%\Engine\Lib\Engine.lib"
+	winmm.lib "..\Games\%GAME%\Core\Lib\Core.lib" "..\Games\%GAME%\Engine\Lib\Engine.lib"
 if errorlevel 1 exit /b 1
 
 rem The launcher builds its renderer list from the .int files in System, so this one has
