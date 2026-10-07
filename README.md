@@ -58,3 +58,5 @@ These renderers are built for the following games:
 
 ### Compile and Package all Renderers
   * Run ```python src\BuildRelease.py```, which will compile all the renderers and package individual ZIP files for each game containing all the renderers in the "dist" directory.
+    * Without any parameters, this will compile the renderers for all of the supported games.
+    * Alternately, you can provide a space separated list of games to compile, such as ```python src\BuildRelease.py DeusEx UnrealTournament```

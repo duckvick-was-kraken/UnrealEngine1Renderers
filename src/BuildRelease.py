@@ -8,13 +8,13 @@ import errno
 
 
 #region Build D3D9
-def BuildD3D9(filepath):
+def BuildD3D9(filepath, targets):
     buildscript = filepath / 'build.bat'
     success = []
     fail = []
     print(buildscript)
 
-    targets=["UnrealTournament","XComEnforcer","DeusEx","Rune","Rune_100","Unreal_226_Gold","Unreal_224","Nerf","HarryPotter","Klingon"]
+    #targets=["UnrealTournament","XComEnforcer","DeusEx","Rune","Rune_100","Unreal_226_Gold","Unreal_224","Nerf","HarryPotter","Klingon"]
     for target in targets:
         print(target)
         p = subprocess.Popen(str(buildscript)+" "+target, shell=True)
@@ -37,20 +37,22 @@ def BuildD3D9(filepath):
     if (len(fail)>0):
         print("Failed: "+str(fail))
 
+    print("")
+
     return {"success":success, "fail":fail}
 #endregion
 
 #region Build OpenGL
-def BuildOpenGL(filepath):
+def BuildOpenGL(filepath,targets):
     buildscript = filepath / 'build.bat'
     success = []
     fail = []
     print(buildscript)
 
-    targets=["release UnrealTournament","release XComEnforcer","release DeusEx","release Rune","release Rune_100","release Unreal_226_Gold","release Unreal_224","release Nerf","release HarryPotter","release Klingon"]
     for target in targets:
         print(target)
-        p = subprocess.Popen(str(buildscript)+" "+target, shell=True)
+        targetcmd = "release "+target
+        p = subprocess.Popen(str(buildscript)+" "+targetcmd, shell=True)
         stdout, stderr = p.communicate()
 
         if (p.returncode==0):
@@ -70,20 +72,23 @@ def BuildOpenGL(filepath):
     if (len(fail)>0):
         print("Failed: "+str(fail))
 
+    print("")
+
     return {"success":success, "fail":fail}
 #endregion
 
 #region Build D3D10
-def BuildD3D10(filepath):
+def BuildD3D10(filepath, targets):
     buildscript = filepath / 'build.ps1'
     success = []
     fail = []
     print(buildscript)
 
-    targets=["Deus Ex Release", "Harry Potter Release", "Nerf Arena Blast Release", "Klingon Release", "Rune 1.00 Release", "Rune Release", "Unreal 224 Release", "Unreal Gold Release", "Unreal Tournament Release", "X-COM Enforcer Release"]
+    targetcmds={"DeusEx":"Deus Ex Release", "HarryPotter":"Harry Potter Release","Nerf":"Nerf Arena Blast Release","Klingon":"Klingon Release","Rune_100":"Rune 1.00 Release", "Rune":"Rune Release", "Unreal_224":"Unreal 224 Release", "Unreal_226_Gold":"Unreal Gold Release", "UnrealTournament":"Unreal Tournament Release", "XComEnforcer":"X-COM Enforcer Release"}
     for target in targets:
         print(target)
-        cmd = 'powershell.exe -file '+str(buildscript)+' -Configuration "'+target+'"'
+        targetcmd = targetcmds[target]
+        cmd = 'powershell.exe -file '+str(buildscript)+' -Configuration "'+targetcmd+'"'
 
         p = subprocess.Popen(cmd, shell=True)
         stdout, stderr = p.communicate()
@@ -104,6 +109,8 @@ def BuildD3D10(filepath):
 
     if (len(fail)>0):
         print("Failed: "+str(fail))
+
+    print("")
 
     return {"success":success, "fail":fail}
 #endregion
@@ -128,11 +135,11 @@ def CleanBuildDirectories(dirs):
 #endregion
 
 #region Collect Results
-def CollectBuildResults(basedir):
+def CollectBuildResults(basedir, targets):
     print("")
     print("Collecting build results...")
 
-    targets=["UnrealTournament","XComEnforcer","DeusEx","Rune","Rune_100","Unreal_226_Gold","Unreal_224","Nerf","HarryPotter","Klingon"]
+    #targets=["UnrealTournament","XComEnforcer","DeusEx","Rune","Rune_100","Unreal_226_Gold","Unreal_224","Nerf","HarryPotter","Klingon"]
 
     d3d9dir = basedir / "D3D9" / "System"
     opengldir = basedir / "OpenGL" / "System"
@@ -184,6 +191,25 @@ def CollectBuildResults(basedir):
 
 #region Run Build
 
+#All valid targets
+alltargets=["UnrealTournament","XComEnforcer","DeusEx","Rune","Rune_100","Unreal_226_Gold","Unreal_224","Nerf","HarryPotter","Klingon"]
+targets = []
+if (len(sys.argv)>1):
+    for argnum in range(1,len(sys.argv)):
+        
+        target = sys.argv[argnum]
+        if (target not in alltargets):
+            print("Target <"+target+"> not in list of valid targets: "+str(alltargets))
+        else:
+            targets.append(target)
+else:
+    targets = alltargets
+
+if len(targets)==0:
+    print("Didn't find any valid targets!")
+    sys.exit()
+
+
 #The location of this python file
 #Should be in the src directory
 base = Path(sys.argv[0]).parents[0]
@@ -211,9 +237,9 @@ d3d9=None
 opengl=None
 d3d10=None
 
-d3d9 = BuildD3D9(base / 'D3D9')
-opengl = BuildOpenGL(base / 'OpenGL')
-d3d10 = BuildD3D10(base / 'D3D10')
+d3d9 = BuildD3D9(base / 'D3D9', targets)
+opengl = BuildOpenGL(base / 'OpenGL', targets)
+d3d10 = BuildD3D10(base / 'D3D10', targets)
 
 print("")
 print("")
@@ -239,7 +265,7 @@ if (d3d10!=None):
     print("Fail: "+str(d3d10.get("fail","")))
 
 #Copy files to packaging folder
-CollectBuildResults(base)
+CollectBuildResults(base, targets)
 
 
 #endregion
