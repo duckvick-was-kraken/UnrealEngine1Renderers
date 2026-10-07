@@ -14,7 +14,6 @@ def BuildD3D9(filepath, targets):
     fail = []
     print(buildscript)
 
-    #targets=["UnrealTournament","XComEnforcer","DeusEx","Rune","Rune_100","Unreal_226_Gold","Unreal_224","Nerf","HarryPotter","Klingon"]
     for target in targets:
         print(target)
         p = subprocess.Popen(str(buildscript)+" "+target, shell=True)
@@ -139,8 +138,6 @@ def CollectBuildResults(basedir, targets):
     print("")
     print("Collecting build results...")
 
-    #targets=["UnrealTournament","XComEnforcer","DeusEx","Rune","Rune_100","Unreal_226_Gold","Unreal_224","Nerf","HarryPotter","Klingon"]
-
     d3d9dir = basedir / "D3D9" / "System"
     opengldir = basedir / "OpenGL" / "System"
     d3d10dir = basedir / "D3D10" / "packages"
@@ -193,6 +190,7 @@ def CollectBuildResults(basedir, targets):
 
 #All valid targets
 alltargets=["UnrealTournament","XComEnforcer","DeusEx","Rune","Rune_100","Unreal_226_Gold","Unreal_224","Nerf","HarryPotter","Klingon"]
+
 targets = []
 if (len(sys.argv)>1):
     for argnum in range(1,len(sys.argv)):
@@ -208,6 +206,8 @@ else:
 if len(targets)==0:
     print("Didn't find any valid targets!")
     sys.exit()
+
+
 
 
 #The location of this python file
@@ -237,6 +237,9 @@ d3d9=None
 opengl=None
 d3d10=None
 
+successes=0
+fails = 0
+
 d3d9 = BuildD3D9(base / 'D3D9', targets)
 opengl = BuildOpenGL(base / 'OpenGL', targets)
 d3d10 = BuildD3D10(base / 'D3D10', targets)
@@ -249,23 +252,43 @@ print("------------------------")
 if (d3d9!=None):
     print("")
     print("D3D9:")
-    print("Success: "+str(d3d9.get("success","")))
-    print("Fail: "+str(d3d9.get("fail","")))
+    success = d3d9.get("success",[])
+    fail = d3d9.get("fail",[])
+    print("Success: "+str(success))
+    print("Fail: "+str(fail))
+    fails += len(fail)
+    successes += len(success)
 
 if (opengl!=None):
     print("")
     print("OpenGL:")
-    print("Success: "+str(opengl.get("success","")))
-    print("Fail: "+str(opengl.get("fail","")))
+    success = opengl.get("success",[])
+    fail = opengl.get("fail",[])
+    print("Success: "+str(success))
+    print("Fail: "+str(fail))
+    fails += len(fail)
+    successes += len(success)
 
 if (d3d10!=None):
     print("")
     print("D3D10:")
-    print("Success: "+str(d3d10.get("success","")))
-    print("Fail: "+str(d3d10.get("fail","")))
+    success = d3d10.get("success",[])
+    fail = d3d10.get("fail",[])
+    print("Success: "+str(success))
+    print("Fail: "+str(fail))
+    fails += len(fail)
+    successes += len(success)
 
 #Copy files to packaging folder
 CollectBuildResults(base, targets)
 
+print("BuildRelease: "+str(targets))
+print("Success: "+str(successes)+"  Fail: "+str(fails))
+print("")
+
+if (fails>0):
+    sys.exit(1)
+
+sys.exit(0)
 
 #endregion
