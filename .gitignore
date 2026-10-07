@@ -25,3 +25,6 @@ src/OpenGL/System/
 #  DirectX SDK needed for D3D10
 src/dxsdk-jun2010/*
 !src/dxsdk-jun2010/.gitkeep
+
+# Don't include the final packaged products
+dist/*

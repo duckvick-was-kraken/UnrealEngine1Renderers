@@ -50,7 +50,11 @@ These renderers are built for the following games:
   * The compiled output will be placed into the ```System/<GameName>``` directories in the "OpenGL" folder.
 
 ### Direct3D 10
-  * Navigate into the "D3D10" directory and run the Powershell build script: ```powershell.exe ./build.ps1```
+  * Navigate into the "D3D10" directory and run the Powershell build script: ```powershell.exe -file ./build.ps1```
     * This build script will compile all build targets, both "debug" and "release".
+  * Alternately, a single product can be built instead by providing a "configuration" parameter: ```powershell.exe -file ./build.ps1 -Configuration "Your Build Target"```
+    * "Your Build Target" can be specified in the form of ```"<Game Name> <Debug|Release>```, such as "Deus Ex Release" or "Unreal Tournament Debug"
   * The compiled output will be placed into the ```packages/<GameName>``` directories in the "D3D10" folder.
 
+### Compile and Package all Renderers
+  * Run ```python src\BuildRelease.py```, which will compile all the renderers and package individual ZIP files for each game containing all the renderers in the "dist" directory.
