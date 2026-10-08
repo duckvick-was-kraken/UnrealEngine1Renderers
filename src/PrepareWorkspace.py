@@ -46,12 +46,8 @@ def ExtractSDK(infile,tmpdir,outdir):
     print("Extracting SDK...")
     subprocess.run(["7z","x","-aoa",infile, "-o"+str(tmpdir)])
 
-    #Remove old directory if it exists
-    if outdir.exists():
-        shutil.rmtree(outdir)
-
     print("Moving SDK...")
-    shutil.move(tmpdir/"DXSDK",outdir)
+    shutil.copytree(tmpdir/"DXSDK",outdir,dirs_exist_ok=True)
     print("SDK Moved!")
     infile.unlink()
 
@@ -76,43 +72,43 @@ def ExtractHeaders(tmpdir,gamesdir,patchdir,headers):
        headers["UnrealTournament"]==False:
         if ExtractZip(tmpdir/'headers.zip', headersdir):
             if headers["DeusEx"]==False:
-                shutil.move(headersdir/'Games'/'DeusEx',gamesdir/'DeusEx')
+                shutil.copytree(headersdir/'Games'/'DeusEx',gamesdir/'DeusEx',dirs_exist_ok=True)
             if headers["Rune"]==False:
-                shutil.move(headersdir/'Games'/'Rune',gamesdir/'Rune')
+                shutil.copytree(headersdir/'Games'/'Rune',gamesdir/'Rune',dirs_exist_ok=True)
             if headers["Rune_100"]==False:
-                shutil.move(headersdir/'Games'/'Rune_100',gamesdir/'Rune_100')
+                shutil.copytree(headersdir/'Games'/'Rune_100',gamesdir/'Rune_100',dirs_exist_ok=True)
             if headers["Unreal_226_Gold"]==False:
-                shutil.move(headersdir/'Games'/'Unreal_226_Gold',gamesdir/'Unreal_226_Gold')
+                shutil.copytree(headersdir/'Games'/'Unreal_226_Gold',gamesdir/'Unreal_226_Gold',dirs_exist_ok=True)
             if headers["UnrealTournament"]==False:
-                shutil.move(headersdir/'Games'/'UnrealTournament',gamesdir/'UnrealTournament')
+                shutil.copytree(headersdir/'Games'/'UnrealTournament',gamesdir/'UnrealTournament',dirs_exist_ok=True)
 
     if (headers["Unreal_224"]==False):
         if ExtractZip(tmpdir/'unreal224.zip', headersdir/'Unreal_224'):
             print("Patching Unreal_224")
             ApplyPatch(headersdir/"Unreal_224",patchdir/"Unreal_224.patch")
-            shutil.move(headersdir/'Unreal_224',gamesdir/'Unreal_224')
+            shutil.copytree(headersdir/'Unreal_224',gamesdir/'Unreal_224',dirs_exist_ok=True)
 
     if (headers["Nerf"]==False):
         if ExtractZip(tmpdir/'nerf.zip', headersdir/'Nerf'):
-            shutil.move(headersdir/'Nerf',gamesdir/'Nerf')
+            shutil.copytree(headersdir/'Nerf',gamesdir/'Nerf',dirs_exist_ok=True)
 
     if (headers["Klingon"]==False):
         if ExtractZip(tmpdir/'klingon.zip', headersdir/'Klingon'):
             print("Patching Klingon")
             ApplyPatch(headersdir/"Klingon",patchdir/"Klingon.patch")
-            shutil.move(headersdir/'Klingon',gamesdir/'Klingon')
+            shutil.copytree(headersdir/'Klingon',gamesdir/'Klingon',dirs_exist_ok=True)
 
     if (headers["HarryPotter"]==False):
         if ExtractZip(tmpdir/'harrypotter.zip', headersdir/'HarryPotter'):
             print("Patching HarryPotter")
             ApplyPatch(headersdir/"HarryPotter",patchdir/"HarryPotter.patch")
-            shutil.move(headersdir/'HarryPotter',gamesdir/'HarryPotter')
+            shutil.copytree(headersdir/'HarryPotter',gamesdir/'HarryPotter',dirs_exist_ok=True)
 
     if (headers["XComEnforcer"]==False):
         if ExtractZip(tmpdir/'xcom.zip', headersdir/'XComEnforcer'):
             print("Patching XComEnforcer")
             ApplyPatch(headersdir/"XComEnforcer",patchdir/"XComEnforcer.patch")
-            shutil.move(headersdir/'XComEnforcer',gamesdir/'XComEnforcer')
+            shutil.copytree(headersdir/'XComEnforcer',gamesdir/'XComEnforcer',dirs_exist_ok=True)
 
     if (headersdir.exists()):
         shutil.rmtree(headersdir)
