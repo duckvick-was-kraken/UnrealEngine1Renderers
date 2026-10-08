@@ -45,6 +45,10 @@ def ExtractSDK(infile,tmpdir,outdir):
     #Fuck it, we need to use 7z externally
     print("Extracting SDK...")
     subprocess.run(["7z","x","-aoa",infile, "-o"+str(tmpdir)])
+
+    #Remove old directory if it exists
+    os.rmdir(outdir)
+
     print("Moving SDK...")
     shutil.move(tmpdir/"DXSDK",outdir)
     print("SDK Moved!")
