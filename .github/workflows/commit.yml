@@ -1,0 +1,156 @@
+name: commit
+on:
+  push:
+
+jobs:
+  BuildRenderers:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v7
+        with:
+          repository: 'theastropath/UnrealEngine1Renderers'
+
+      - name: Setup 7-Zip
+        uses: milliewalky/setup-7-zip@v2
+
+      - name: Setup MSVC
+        uses: TheMrMilchmann/setup-msvc-dev@v4
+        with:
+          arch: x86
+          toolset: 14.44
+
+      - name: Install Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.14'
+          cache: 'pip'
+
+      - run: python -m venv .venv
+        shell: bash
+
+      # I hate Windows, create a symlink called bin that points to Scripts
+      - name: Create Virtual Environment
+        run: |
+          if [ -d ".venv/Scripts" ] && [ ! -d ".venv/bin" ]; then
+            ln -s Scripts .venv/bin
+          fi
+        if: runner.os == 'Windows'
+        shell: bash
+      
+      - name: Install Python Requirements
+        run: .venv/bin/pip install -r src/requirements.txt 2>&1
+        shell: bash
+    
+      - name: Prepare Workspace
+        run: .venv/bin/python src/PrepareWorkspace.py
+        shell: bash
+
+      - name: Wrong Link Be GONE
+        uses: JesseTG/rm@v1.0.3
+        with:
+         path: C:\Program Files\Git\usr\bin\link.exe
+
+      ########################################
+      # Actually build and upload everything #
+      ########################################
+  
+      - name: Build Deus Ex
+        run: .venv/bin/python src/BuildRelease.py DeusEx
+        shell: bash
+
+      - name: Upload DeusEx.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: DeusEx.zip
+          path: dist/DeusEx.zip
+          
+      - name: Build Unreal Tournament
+        run: .venv/bin/python src/BuildRelease.py UnrealTournament
+        shell: bash
+
+      - name: Upload UnrealTournament.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: UnrealTournament.zip
+          path: dist/UnrealTournament.zip
+
+      - name: Build X-Com Enforcer
+        run: .venv/bin/python src/BuildRelease.py XComEnforcer
+        shell: bash
+
+      - name: Upload XComEnforcer.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: XComEnforcer.zip
+          path: dist/XComEnforcer.zip
+
+      - name: Build Rune
+        run: .venv/bin/python src/BuildRelease.py Rune
+        shell: bash
+
+      - name: Upload Rune.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: Rune.zip
+          path: dist/Rune.zip
+
+      - name: Build Rune 1.00
+        run: .venv/bin/python src/BuildRelease.py Rune_100
+        shell: bash
+
+      - name: Upload Rune_100.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: Rune_100.zip
+          path: dist/Rune_100.zip
+
+      - name: Build Unreal 226 Gold
+        run: .venv/bin/python src/BuildRelease.py Unreal_226_Gold
+        shell: bash
+
+      - name: Upload Unreal_226_Gold.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: Unreal_226_Gold.zip
+          path: dist/Unreal_226_Gold.zip
+
+      - name: Build Unreal 224
+        run: .venv/bin/python src/BuildRelease.py Unreal_224
+        shell: bash
+
+      - name: Upload Unreal_224.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: Unreal_224.zip
+          path: dist/Unreal_224.zip
+
+      - name: Build Nerf Arena Blast
+        run: .venv/bin/python src/BuildRelease.py Nerf
+        shell: bash
+
+      - name: Upload Nerf.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: Nerf.zip
+          path: dist/Nerf.zip
+
+      - name: Build Harry Potter
+        run: .venv/bin/python src/BuildRelease.py HarryPotter
+        shell: bash
+
+      - name: Upload HarryPotter.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: HarryPotter.zip
+          path: dist/HarryPotter.zip
+
+      - name: Build Klingon Honor Guard
+        run: .venv/bin/python src/BuildRelease.py Klingon
+        shell: bash
+
+      - name: Upload Klingon.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: Klingon.zip
+          path: dist/Klingon.zip
