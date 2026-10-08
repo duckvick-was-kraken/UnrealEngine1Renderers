@@ -47,7 +47,8 @@ def ExtractSDK(infile,tmpdir,outdir):
     subprocess.run(["7z","x","-aoa",infile, "-o"+str(tmpdir)])
 
     #Remove old directory if it exists
-    os.rmdir(outdir)
+    if outdir.exists():
+        shutil.rmtree(outdir)
 
     print("Moving SDK...")
     shutil.move(tmpdir/"DXSDK",outdir)
