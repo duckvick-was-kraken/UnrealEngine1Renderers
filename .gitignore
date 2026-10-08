@@ -28,3 +28,4 @@ src/dxsdk-jun2010/*
 
 # Don't include the final packaged products
 dist/*
+src/tmp/
