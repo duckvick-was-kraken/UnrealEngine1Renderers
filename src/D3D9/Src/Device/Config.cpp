@@ -135,7 +135,7 @@ void UD3D9RenderDevice::StaticConstructorBody() {
 
 	4 by default.
 	*/
-	SC_AddIntConfigParam(TEXT("Antialiasing"), CPP_PROPERTY_LOCAL(NumAASamples), 4);
+	SC_AddIntConfigParam(TEXT("Antialiasing"), CPP_PROPERTY_LOCAL(NumAASamples), 8);
 	SC_AddBoolConfigParam(1, TEXT("NoAATiles"), CPP_PROPERTY_LOCAL(NoAATiles), 1);
 	//The two share one slot and are never both registered.
 #ifdef UTGLR_OLD_URENDERDEVICE
