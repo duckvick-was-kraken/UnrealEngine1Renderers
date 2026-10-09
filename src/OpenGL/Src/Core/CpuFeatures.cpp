@@ -7,11 +7,9 @@
 
 #ifdef UTGLR_INCLUDE_SSE_CODE
 bool UOpenGLRenderDevice::CPU_DetectCPUID(void) {
+	int cpuInfo[4];
 	__try {
-		__asm {
-			xor eax, eax
-			cpuid
-		}
+		__cpuid(cpuInfo, 0);
 	} __except (EXCEPTION_EXECUTE_HANDLER) {
 		return false;
 	}
@@ -26,18 +24,9 @@ bool UOpenGLRenderDevice::CPU_DetectSSE(void) {
 		return false;
 	}
 
-	bSupportsSSE = false;
-	__asm {
-		mov eax, 1
-		cpuid
-
-		test edx, 0x02000000
-		jz l_no_sse
-
-		mov bSupportsSSE, 1
-
-l_no_sse:
-	}
+	int cpuInfo[4];
+	__cpuid(cpuInfo, 1);
+	bSupportsSSE = ((cpuInfo[3] & 0x02000000) != 0);
 
 	if (bSupportsSSE == false) {
 		return bSupportsSSE;
@@ -61,18 +50,9 @@ bool UOpenGLRenderDevice::CPU_DetectSSE2(void) {
 		return false;
 	}
 
-	bSupportsSSE2 = false;
-	__asm {
-		mov eax, 1
-		cpuid
-
-		test edx, 0x04000000
-		jz l_no_sse2
-
-		mov bSupportsSSE2, 1
-
-l_no_sse2:
-	}
+	int cpuInfo[4];
+	__cpuid(cpuInfo, 1);
+	bSupportsSSE2 = ((cpuInfo[3] & 0x04000000) != 0);
 
 	if (bSupportsSSE2 == false) {
 		return bSupportsSSE2;
