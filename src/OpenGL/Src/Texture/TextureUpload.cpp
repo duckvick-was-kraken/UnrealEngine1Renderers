@@ -38,6 +38,7 @@ void UOpenGLRenderDevice::UploadTextureExec(FTextureInfo &Info, DWORD PolyFlags,
 
 	//Nothing to run.
 	if (pBind->texType == TEX_TYPE_NONE) {
+		TexInfoClearRealtimeChanged(Info);
 		return;
 	}
 
