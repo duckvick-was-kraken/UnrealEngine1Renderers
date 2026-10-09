@@ -119,6 +119,7 @@ void UD3D9RenderDevice::Unlock(UBOOL Blit) {
 			m_prevFrameTimestamp = spinTimestamp;
 		} else {
 			ShutdownFrameRateLimitTimer();
+		}
 	}
 
 
