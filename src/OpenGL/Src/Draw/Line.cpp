@@ -79,6 +79,9 @@ void UOpenGLRenderDevice::Draw3DLine(FSceneNode *Frame, FPlane Color, DWORD Line
 	P1 = P1.TransformPointBy(Frame->Coords);
 	P2 = P2.TransformPointBy(Frame->Coords);
 	if (Frame->Viewport->IsOrtho()) {
+		if (!(Frame->Zoom > 0.0f)) {
+			return;
+		}
 		FLOAT rcpZoom = 1.0f / Frame->Zoom;
 		P1.X = (P1.X * rcpZoom) + Frame->FX2;
 		P1.Y = (P1.Y * rcpZoom) + Frame->FY2;
@@ -89,7 +92,7 @@ void UOpenGLRenderDevice::Draw3DLine(FSceneNode *Frame, FPlane Color, DWORD Line
 		// See if points form a line parallel to our line of sight (i.e. line appears as a dot).
 		if (Abs(P2.X - P1.X) + Abs(P2.Y - P1.Y) >= 0.2f) {
 			Draw2DLine(Frame, Color, LineFlags, P1, P2);
-		} else if (Frame->Viewport->Actor->OrthoZoom < ORTHO_LOW_DETAIL) {
+		} else if (Frame->Viewport->Actor && (Frame->Viewport->Actor->OrthoZoom < ORTHO_LOW_DETAIL)) {
 			Draw2DPoint(Frame, Color, LINE_None, P1.X - 1.0f, P1.Y - 1.0f, P1.X + 1.0f, P1.Y + 1.0f, P1.Z);
 		}
 	} else {

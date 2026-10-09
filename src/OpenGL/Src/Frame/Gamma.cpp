@@ -376,6 +376,7 @@ void UOpenGLRenderDevice::DrawGammaPostProcess(void) {
 	if (ResizeGammaSceneTextureSafe(sizeX, sizeY) == false) {
 		//Fall back to the display driver.
 		m_gammaPostProcessSupported = false;
+		ShutdownGammaPostProcess();
 		SetGamma(Viewport->GetOuterUClient()->Brightness);
 
 		if (DebugBit(DEBUG_BIT_BASIC)) dbgPrintf("utglr: Gamma post process frame capture allocation failed\n");

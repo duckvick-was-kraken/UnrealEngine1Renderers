@@ -95,6 +95,18 @@ void UD3D9RenderDevice::Lock(FPlane InFlashScale, FPlane InFlashFog, FPlane Scre
 			appErrorf(TEXT("Error checking for lost D3D device"));
 		}
 	}
+	
+	//Notify when failing to reacquire a render target
+	if (!m_frameSkipped && m_deferredDeviceReset) {
+		m_SetRes_isDeviceReset = true;
+		if (!SetRes(m_SetRes_NewX, m_SetRes_NewY, m_SetRes_NewColorBytes, m_SetRes_Fullscreen)) {
+			appErrorf(TEXT("Failed to reset lost D3D device"));
+		}
+		//Still set means the reset met a lost device again and the resources are still gone.
+		if (m_deferredDeviceReset) {
+			m_frameSkipped = true;
+		}
+	}
 
 	if (!m_frameSkipped) {
 		if (FAILED(m_d3dDevice->BeginScene())) {

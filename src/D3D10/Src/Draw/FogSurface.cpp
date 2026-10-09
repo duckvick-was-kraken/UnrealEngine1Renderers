@@ -50,7 +50,12 @@ void UD3D10RenderDevice::DrawFogSurface(FSceneNode *Frame, FFogSurf &FogSurf) {
 			Vertex_FogSurface *v = (Vertex_FogSurface *)buf->getVertex();
 			v->Color = *((Vec4 *)&FogSurf.FogColor.X);
 			v->Pos = *(Vec3 *)&Poly->Pts[i]->Point.X;
-			v->Color.w = v->Pos.z * mult;
+			float fogAlpha = v->Pos.z * mult;
+			if (fogAlpha > 1.0f)
+				fogAlpha = 1.0f;
+			else if (!(fogAlpha > 0.0f))
+				fogAlpha = 0.0f;
+			v->Color.w = fogAlpha;
 			v->flags = PF_AlphaBlend;
 		}
 	}

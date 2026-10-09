@@ -22,7 +22,7 @@ UBOOL UOpenGLRenderDevice::Exec(const TCHAR *Cmd, FOutputDevice &Ar) {
 			return 1;
 		} else if (ParseCommand(&Cmd, TEXT("BUILD"))) {
 			//One appFromAnsi call, because it returns a shared buffer.
-			debugf(TEXT("OpenGL renderer built: %s"), appFromAnsi(__DATE__ " " __TIME__));
+			debugf(TEXT("OpenGL 1.x Renderer built: %s"), appFromAnsi(__DATE__ " " __TIME__));
 			return 1;
 		} else if (ParseCommand(&Cmd, TEXT("AA"))) {
 			if (m_usingAA) {

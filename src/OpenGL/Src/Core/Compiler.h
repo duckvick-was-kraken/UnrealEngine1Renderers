@@ -16,8 +16,12 @@
 #endif
 
 #ifdef UTGLR_INCLUDE_SSE_CODE
+#pragma push_macro("clock")
+#undef clock
+#include <intrin.h>
 #include <xmmintrin.h>
 #include <emmintrin.h>
+#pragma pop_macro("clock")
 #endif
 
 

@@ -382,18 +382,18 @@ bool TexConverter::updateAtlasedLightmap(FTextureInfo &Info) const {
 \return false only when the map failed.
 */
 bool TexConverter::update(FTextureInfo &Info, DWORD PolyFlags) const {
+	TexInfoSetRealtimeChanged(Info, 0);
+
 	if (Info.Format > HIGHEST_SUPPORTED_TEXF) {
-		UD3D10RenderDevice::debugs("Unknown texture type.");
+		conversionFailed(Info, "Unknown texture type.");
 		return true;
 	}
 
 	const TextureFormat &format = formats[Info.Format];
 	if (format.supported == false) {
-		UD3D10RenderDevice::debugs("Unsupported texture type.");
+		conversionFailed(Info, "Unknown texture type.");
 		return true;
 	}
-
-	TexInfoSetRealtimeChanged(Info, 0);
 
 	if (format.blocksize > 0) {
 		UD3D10RenderDevice::debugs("Cannot update a block compressed texture.");
@@ -404,7 +404,7 @@ bool TexConverter::update(FTextureInfo &Info, DWORD PolyFlags) const {
 		return true;
 
 	if (!usableDimensions(Info)) {
-		UD3D10RenderDevice::debugs("Update: texture has an unusable size.");
+		conversionFailed(Info, "Update: texture has an unusable size.");
 		return true;
 	}
 
