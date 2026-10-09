@@ -34,7 +34,7 @@ void UOpenGLRenderDevice::DrawFogSurface(FSceneNode *Frame, FFogSurf &FogSurf) {
 	UTGLR_DEBUG_CALL_COUNT(DrawFogSurface);
 	guard(UOpenGLRenderDevice::DrawFogSurface);
 
-	if (FogSurf.FogDistance <= 0.0f) {
+	if (!(FogSurf.FogDistance > 0.0f)) {
 		return;
 	}
 
