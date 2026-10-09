@@ -40,14 +40,15 @@ void UD3D9RenderDevice::BuildGammaRamp(float redGamma, float greenGamma, float b
 		iVal += brightness;
 		if (iVal < 0) iVal = 0;
 		if (iVal > 255) iVal = 255;
+		const float fVal = iVal / 255.0f;
 
-		iValRed = (int)appRound((float)appPow(iVal / 255.0f, rcpRedGamma) * 65535.0f);
-		iValGreen = (int)appRound((float)appPow(iVal / 255.0f, rcpGreenGamma) * 65535.0f);
-		iValBlue = (int)appRound((float)appPow(iVal / 255.0f, rcpBlueGamma) * 65535.0f);
+		iValRed = (int)appRound((float)appPow(fVal, rcpRedGamma) * 65535.0f);
+		iValGreen = (int)appRound((float)appPow(fVal, rcpGreenGamma) * 65535.0f);
+		iValBlue = (int)appRound((float)appPow(fVal, rcpBlueGamma) * 65535.0f);
 
-		ramp.red[u] = (_WORD)iValRed;
-		ramp.green[u] = (_WORD)iValGreen;
-		ramp.blue[u] = (_WORD)iValBlue;
+		ramp.red[u] = (_WORD)Clamp(iValRed, 0, 65535);
+		ramp.green[u] = (_WORD)Clamp(iValGreen, 0, 65535);
+		ramp.blue[u] = (_WORD)Clamp(iValBlue, 0, 65535);
 	}
 
 	return;
@@ -286,6 +287,7 @@ void UD3D9RenderDevice::ApplyGammaPass(void) {
 	}
 
 	if (!CalcGammaPassParams(Viewport->GetOuterUClient()->Brightness, exponents, offsets)) {
+		m_gammaPassFailCount = 0;
 		return;
 	}
 
