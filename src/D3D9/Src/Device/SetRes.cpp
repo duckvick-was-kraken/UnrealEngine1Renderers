@@ -569,6 +569,11 @@ UBOOL UD3D9RenderDevice::SetRes(INT NewX, INT NewY, INT NewColorBytes, UBOOL Ful
 		TMUnits = 1;
 	}
 
+	if (TMUnits < 1) {
+		TMUnits = 1;
+	} else if (TMUnits > MAX_TMUNITS) {
+		TMUnits = MAX_TMUNITS;
+	}
 
 	ConfigValidate_Main();
 
