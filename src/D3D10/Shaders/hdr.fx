@@ -197,7 +197,7 @@ PS_OUTPUT_SIMPLE PS_final(PS_INPUT_SIMPLE input)
 
 	// Define a linear blending from -1.5 to 2.6 (log scale) which
 	// determines the lerp amount for blue shift
-    float fBlueShiftCoefficient = 1.0f - (vLum + 1.5)/1.1;
+    float fBlueShiftCoefficient = 1.0f - (vLum + 1.5)/4.1;
     fBlueShiftCoefficient = saturate(fBlueShiftCoefficient);
 
 	// Lerp between current color and blue, desaturated copy
