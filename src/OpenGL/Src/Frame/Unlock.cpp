@@ -111,6 +111,7 @@ void UOpenGLRenderDevice::Unlock(UBOOL Blit) {
 			m_prevFrameTimestamp = spinTimestamp;
 		} else {
 			ShutdownFrameRateLimitTimer();
+		}
 	}
 
 
