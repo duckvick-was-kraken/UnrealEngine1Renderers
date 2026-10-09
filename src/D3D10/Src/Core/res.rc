@@ -72,7 +72,7 @@ BEGIN
             VALUE "InternalName", "D3D10Drv"
             VALUE "LegalCopyright", "Copyright (C) 2009-2026 Marijn Kentie"
             VALUE "OriginalFilename", "D3D10Drv.dll"
-            VALUE "ProductName", "Unreal Direct3D 10 renderer"
+            VALUE "ProductName", "Unreal Direct3D 10 Renderer"
             VALUE "ProductVersion", "30.0.0.0"
         END
     END

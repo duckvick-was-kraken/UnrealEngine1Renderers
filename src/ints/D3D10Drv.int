@@ -4,6 +4,6 @@ Preferences=(Caption="Rendering",Parent="Advanced Options")
 Preferences=(Caption="Direct3D 10 support",Parent="Rendering",Class=D3D10Drv.D3D10RenderDevice,Immediate=True)
 
 [D3D10RenderDevice]
-ClassCaption="Direct3D10 Renderer"
+ClassCaption="Direct3D 10 Renderer"
 AskInstalled=Do you have DirectX 10 installed?
-AskUse=Do you want to use Direct3D10?
+AskUse=Do you want to use Direct3D 10?

@@ -22,7 +22,7 @@ UBOOL UD3D9RenderDevice::Exec(const TCHAR *Cmd, FOutputDevice &Ar) {
 			debugf(TEXT("BUFFERTRIS [%i]"), BufferActorTris);
 			return 1;
 		} else if (ParseCommand(&Cmd, TEXT("BUILD"))) {
-			debugf(TEXT("D3D9 renderer built: %s"), appFromAnsi(__DATE__ " " __TIME__));
+			debugf(TEXT("Direct3D 9 Renderer built: %s"), appFromAnsi(__DATE__ " " __TIME__));
 			return 1;
 		} else if (ParseCommand(&Cmd, TEXT("AA"))) {
 			if (m_usingAA) {
