@@ -2,6 +2,8 @@ name: commit
 on:
   push:
     paths: ['src/*', '.github/**']
+  pull_request:
+    paths: ['src/*', '.github/**']
 
 jobs:
   BuildRenderers:
