@@ -602,6 +602,7 @@ UBOOL UD3D9RenderDevice::SetRes(INT NewX, INT NewY, INT NewColorBytes, UBOOL Ful
 
 	if ((MaxLogTextureSize > Dummy) || (SupportsTC)) MaxLogTextureSize = Dummy;
 	if ((MinLogTextureSize < 2) || (SupportsTC)) MinLogTextureSize = 2;
+	if (MinLogTextureSize > MaxLogTextureSize) MinLogTextureSize = MaxLogTextureSize;
 
 	MaxLogUOverV = MaxLogTextureSize;
 	MaxLogVOverU = MaxLogTextureSize;

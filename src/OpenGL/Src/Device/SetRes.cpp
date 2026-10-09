@@ -481,6 +481,7 @@ UBOOL UOpenGLRenderDevice::SetRes(INT NewX, INT NewY, INT NewColorBytes, UBOOL F
 
 	if ((MaxLogTextureSize > Dummy) || (SupportsTC)) MaxLogTextureSize = Dummy;
 	if ((MinLogTextureSize < 2) || (SupportsTC)) MinLogTextureSize = 2;
+	if (MinLogTextureSize > MaxLogTextureSize) MinLogTextureSize = MaxLogTextureSize;
 
 	MaxLogUOverV = MaxLogTextureSize;
 	MaxLogVOverU = MaxLogTextureSize;
