@@ -101,7 +101,7 @@ UBOOL UOpenGLRenderDevice::SetRes(INT NewX, INT NewY, INT NewColorBytes, UBOOL F
 		if (!Viewport->ResizeViewport(BLIT_HardwarePaint | UTGLR_BLIT_OPENGL, NewX, NewY, NewColorBytes)) {
 			return 0;
 		}
-		SetViewport(0, 0, NewX, NewY);
+		SetViewport(0, 0, Viewport->SizeX, Viewport->SizeY);
 
 		return 1;
 	}
