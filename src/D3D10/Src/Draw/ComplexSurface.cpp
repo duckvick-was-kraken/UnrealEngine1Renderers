@@ -198,8 +198,9 @@ void UD3D10RenderDevice::DrawComplexSurface(FSceneNode *Frame, FSurfaceInfo &Sur
 		layerMask |= 1u << 3;
 	}
 	if (Surface.MacroTexture) {
-		layers[4].PanU = Surface.MacroTexture->Pan.X;
-		layers[4].PanV = Surface.MacroTexture->Pan.Y;
+		//Center texels
+		layers[4].PanU = Surface.MacroTexture->Pan.X - (0.5f * Surface.MacroTexture->UScale);
+		layers[4].PanV = Surface.MacroTexture->Pan.Y - (0.5f * Surface.MacroTexture->VScale);
 		layers[4].MultU = macro->multU;
 		layers[4].MultV = macro->multV;
 		layerMask |= 1u << 4;
