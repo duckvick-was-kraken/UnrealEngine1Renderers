@@ -28,5 +28,6 @@ Add your patchnotes for release v30.0.1 here
   - D3D9: Add debug log and skip frame when output device cannot be acquired.
   - D3D10: Standardize error reporting on texture conversion failure.
   - Use consistent renderer names.
+  - OpenGL & D3D9: "Brightness" option is no longer exposed in the renderer settings.
 
 </details>

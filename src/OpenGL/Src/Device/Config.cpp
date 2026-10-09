@@ -68,8 +68,8 @@ void UOpenGLRenderDevice::StaticConstructorBody() {
 	SC_AddFloatConfigParam(TEXT("GammaOffsetRed"), CPP_PROPERTY_LOCAL(GammaOffsetRed), 0.0f);
 	SC_AddFloatConfigParam(TEXT("GammaOffsetGreen"), CPP_PROPERTY_LOCAL(GammaOffsetGreen), 0.0f);
 	SC_AddFloatConfigParam(TEXT("GammaOffsetBlue"), CPP_PROPERTY_LOCAL(GammaOffsetBlue), 0.0f);
-	//Registered, so edits are seen.
-	SC_AddIntConfigParam(TEXT("Brightness"), CPP_PROPERTY_LOCAL(Brightness), 0);
+	//Registered, so edits are seen.  But actually, it shouldn't really be shown except if you wanted to debug
+	//SC_AddIntConfigParam(TEXT("Brightness"), CPP_PROPERTY_LOCAL(Brightness), 0);
 	//Named as in the D3D9 renderer.
 	//Off selects the in-render gamma pass.
 	SC_AddBoolConfigParam(1, TEXT("HardwareGamma"), CPP_PROPERTY_LOCAL(UseHardwareGamma), 0);

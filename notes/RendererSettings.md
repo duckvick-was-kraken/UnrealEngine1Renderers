@@ -16,7 +16,6 @@ This page should explain all of the settings available in the renderers.
 | Antialiasing | ✅ | ✅ | ✅ | The number of samples to use per fragment for antialiasing, which filters jagged lines.  2 or 4 should generally work. |
 | AutoFOV | ❌ | ✅ | ❌ | Automatically sets the field of view depending on the window/screen size. Might want to turn this off if you want to set an extra-wide FOV for multiplayer games. Valid settings: true/false. Default: true. |
 | BGRATextures | ❌ | ❌ | ✅ | Allows textures to be uploaded in BGRA format rather than RGBA if the GL_EXT_bgra extension is supported. |
-| Brightness | ✅ | ❌ | ✅ | ? |
 | BufferTileQuads | ❌ | ❌ | ✅ | Enables buffering in the DrawTile path, which may improve text rendering performance. |
 | BumpMapping | ❌ | ✅ | ❌ | Can be ignored unless you've got special textures installed. Attempts to fake bump mapping if textures have normal maps present. Requires a normal map to be either present in the texture's bump map slot, or provided as an extra external texture. Valid settings: true/false. Default: false. |
 | CacheStaticMaps | ✅ | ❌ | ✅ | ? |

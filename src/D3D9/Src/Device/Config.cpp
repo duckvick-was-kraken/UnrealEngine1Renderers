@@ -65,7 +65,7 @@ void UD3D9RenderDevice::StaticConstructorBody() {
 	SC_AddFloatConfigParam(TEXT("GammaOffsetRed"), CPP_PROPERTY_LOCAL(GammaOffsetRed), 0.0f);
 	SC_AddFloatConfigParam(TEXT("GammaOffsetGreen"), CPP_PROPERTY_LOCAL(GammaOffsetGreen), 0.0f);
 	SC_AddFloatConfigParam(TEXT("GammaOffsetBlue"), CPP_PROPERTY_LOCAL(GammaOffsetBlue), 0.0f);
-	SC_AddIntConfigParam(TEXT("Brightness"), CPP_PROPERTY_LOCAL(Brightness), 0);
+	//SC_AddIntConfigParam(TEXT("Brightness"), CPP_PROPERTY_LOCAL(Brightness), 0); //This shouldn't actually be exposed to the user, maybe useful for debug
 	SC_AddBoolConfigParam(1, TEXT("HardwareGamma"), CPP_PROPERTY_LOCAL(UseHardwareGamma), 0);
 	//Off for every game, Deus Ex included: a world surface is modulated by its lightmap twice.
 	SC_AddBoolConfigParam(0, TEXT("OneXBlending"), CPP_PROPERTY_LOCAL(OneXBlending), 0);

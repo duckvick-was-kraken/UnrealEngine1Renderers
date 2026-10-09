@@ -1,6 +1,7 @@
 name: commit
 on:
   push:
+    paths: ['src/*', '.github/**']
 
 jobs:
   BuildRenderers:
