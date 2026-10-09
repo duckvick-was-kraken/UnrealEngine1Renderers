@@ -87,6 +87,8 @@ void FASTCALL Buffer3ColoredVerts(UD3D9RenderDevice *pRD, FTransTexture **Pts) {
 #ifdef UTGLR_INCLUDE_SSE_CODE
 __declspec(naked) void FASTCALL Buffer3ColoredVerts_SSE(UD3D9RenderDevice *pRD, FTransTexture **Pts) {
 	static float f255 = 255.0f;
+	static float fZero = 0.0f;
+
 	__asm {
 		//pRD is in ecx, Pts is in edx
 
@@ -141,6 +143,12 @@ v_loop:
 			mulss xmm4, xmm2
 			movss xmm5, [eax]FTransSample.Light + 8
 			mulss xmm5, xmm2
+			maxss xmm3, fZero
+			minss xmm3, f255
+			maxss xmm4, fZero
+			minss xmm4, f255
+			maxss xmm5, fZero
+			minss xmm5, f255
 			cvtss2si eax, xmm3
 			shl eax, 16
 			cvtss2si ecx, xmm4
@@ -267,6 +275,8 @@ void FASTCALL Buffer3FoggedVerts(UD3D9RenderDevice *pRD, FTransTexture **Pts) {
 __declspec(naked) void FASTCALL Buffer3FoggedVerts_SSE(UD3D9RenderDevice *pRD, FTransTexture **Pts) {
 	static float f255 = 255.0f;
 	static float f1 = 1.0f;
+	static float fZero = 0.0f;
+
 	__asm {
 		//pRD is in ecx, Pts is in edx
 
@@ -332,6 +342,12 @@ v_loop:
 			mulss xmm4, xmm6
 			movss xmm5, [eax]FTransSample.Light + 8
 			mulss xmm5, xmm6
+			maxss xmm3, fZero
+			minss xmm3, f255
+			maxss xmm4, fZero
+			minss xmm4, f255
+			maxss xmm5, fZero
+			minss xmm5, f255
 			cvtss2si ebx, xmm3
 			shl ebx, 16
 			cvtss2si ecx, xmm4
@@ -353,6 +369,12 @@ v_loop:
 			mulss xmm4, xmm2
 			movss xmm5, [eax]FTransSample.Fog + 8
 			mulss xmm5, xmm2
+			maxss xmm3, fZero
+			minss xmm3, f255
+			maxss xmm4, fZero
+			minss xmm4, f255
+			maxss xmm5, fZero
+			minss xmm5, f255
 			cvtss2si eax, xmm3
 			and eax, 255
 			shl eax, 16
