@@ -135,6 +135,9 @@ void UOpenGLRenderDevice::CacheTextureInfo(FCachedTexture *pBind, const FTexture
 		texFlags |= TEX_FLAG_NO_CLAMP;
 	}
 
+	if (TryCacheOverrideTextureInfo(pBind, Info, UCopyBits, VCopyBits)) {
+		return;
+	}
 
 	//PF_Masked cannot change once a texture is updated.
 	bool paletted = false;
