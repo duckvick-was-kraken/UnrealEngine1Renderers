@@ -56,7 +56,7 @@ void UD3D10RenderDevice::DrawTile(FSceneNode *Frame, FTextureInfo &Info, FLOAT X
 	paints the whole glyph cell and occludes later HUD tiles.
 	*/
 	if (Info.Palette && Info.Palette[128].A != 255 && !(flags & PF_Translucent))
-		flags |= PF_Highlighted;
+		flags |= PF_Highlighted | PF_Masked;
 
 	if (logTiles)
 		logTileOnce(Info, PolyFlags, flags);
