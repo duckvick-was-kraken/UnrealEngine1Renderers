@@ -51,8 +51,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 30,0,0,0
- PRODUCTVERSION 30,0,0,0
+ FILEVERSION 30,1,0,0
+ PRODUCTVERSION 30,1,0,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -68,12 +68,12 @@ BEGIN
         BLOCK "041304b0"
         BEGIN
             VALUE "FileDescription", "Renderer DLL"
-            VALUE "FileVersion", "30.0.0.0"
+            VALUE "FileVersion", "30.1.0.0"
             VALUE "InternalName", "D3D10Drv"
             VALUE "LegalCopyright", "Copyright (C) 2009-2026 Marijn Kentie"
             VALUE "OriginalFilename", "D3D10Drv.dll"
             VALUE "ProductName", "Unreal Direct3D 10 Renderer"
-            VALUE "ProductVersion", "30.0.0.0"
+            VALUE "ProductVersion", "30.1.0.0"
         END
     END
     BLOCK "VarFileInfo"

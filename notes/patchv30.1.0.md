@@ -1,4 +1,4 @@
-Add your patchnotes for release v30.0.1 here
+Add your patchnotes for release v30.1.0 here
 
 ## Major Changes
  - OpenGL & D3D9: Prevent brightness from overflowing.
