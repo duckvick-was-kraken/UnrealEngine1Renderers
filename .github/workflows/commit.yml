@@ -1,7 +1,6 @@
 name: commit
 on:
   push:
-    paths: ['src/*', '.github/**']
   pull_request:
 
 jobs:
