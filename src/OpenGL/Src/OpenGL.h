@@ -745,7 +745,7 @@ class UOpenGLRenderDevice : public URenderDevice {
 			return (PolyFlags & PF_Masked) != 0;
 		}
 #endif
-		return (PolyFlags & (PF_Translucent | PF_Modulated)) != 0;
+		return (PolyFlags & (PF_Translucent | PF_Modulated | PF_Highlighted)) != 0;
 	}
 	//@}
 
@@ -1508,7 +1508,7 @@ class UOpenGLRenderDevice : public URenderDevice {
 			}
 		} else
 #endif
-			if (!(PolyFlags & (PF_Translucent | PF_Modulated))) {
+			if (!(PolyFlags & (PF_Translucent | PF_Modulated | PF_Highlighted))) {
 			PolyFlags |= PF_Occlude;
 		} else if (PolyFlags & PF_Translucent) {
 			PolyFlags &= ~PF_Masked;
