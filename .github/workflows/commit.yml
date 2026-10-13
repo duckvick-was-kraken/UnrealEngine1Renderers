@@ -40,7 +40,21 @@ jobs:
       - name: Install Python Requirements
         run: .venv/bin/pip install -r src/requirements.txt 2>&1
         shell: bash
-    
+
+      - name: Cache Game Headers
+        id: cache-headers
+        uses: actions/cache@v6
+        with:
+          path: src/Games
+          key: GameHeaders
+
+      - name: Cache DirectX SDK
+        id: cache-dxsdk
+        uses: actions/cache@v6
+        with:
+          path: src/dxsdk-jun2010
+          key: DXSDK
+
       - name: Prepare Workspace
         run: .venv/bin/python src/PrepareWorkspace.py
         shell: bash
