@@ -1,8 +1,6 @@
 Add your patchnotes for release v30.1.1 here
 
 ## Major Changes
- - Add Unreal 227 compilation target
- - Add Unreal Tournament 469 compilation target
 
 ## Minor Changes
 
