@@ -39,11 +39,20 @@
 #ifdef UTGLR_KLINGON_BUILD
 #define UTGLR_VALID_BUILD_CONFIG 1
 #endif
+#ifdef UTGLR_BROTHERBEAR_BUILD
+#define UTGLR_VALID_BUILD_CONFIG 1
+#endif
 
 #if !UTGLR_VALID_BUILD_CONFIG
 #error Valid build config not selected.
 #endif
 #undef UTGLR_VALID_BUILD_CONFIG
+
+//Brother Bear runs on the Harry Potter engine, indexed triangles and all, and adds two gamma
+//entry points the renderers stub for it.
+#ifdef UTGLR_BROTHERBEAR_BUILD
+#define UTGLR_HP_BUILD 1
+#endif
 
 //Engines predating DetailTextures: no Exec chaining, no GUglyHackFlags, so no weapon
 //pass and no ZRangeHack.

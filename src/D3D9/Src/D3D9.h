@@ -1445,6 +1445,12 @@ class UD3D9RenderDevice : public URenderDevice {
 		return (Indices[first + 0] < NumPts) && (Indices[first + 1] < NumPts) && (Indices[first + 2] < NumPts);
 	}
 #endif
+#ifdef UTGLR_BROTHERBEAR_BUILD
+	//Pure virtual on this engine. Lock already follows the brightness setting, and the ramp is
+	//restored on exit.
+	void UpdateGamma() {}
+	void RestoreGamma() {}
+#endif
 	void DrawTile(FSceneNode *Frame, FTextureInfo &Info, FLOAT X, FLOAT Y, FLOAT XL, FLOAT YL, FLOAT U, FLOAT V, FLOAT UL, FLOAT VL, class FSpanBuffer *Span, FLOAT Z, FPlane Color, FPlane Fog, DWORD PolyFlags);
 	void Draw3DLine(FSceneNode *Frame, FPlane Color, DWORD LineFlags, FVector P1, FVector P2);
 	void Draw2DLine(FSceneNode *Frame, FPlane Color, DWORD LineFlags, FVector P1, FVector P2);

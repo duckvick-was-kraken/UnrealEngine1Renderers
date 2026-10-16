@@ -7,6 +7,14 @@ Build configuration and the SDK shims.
 #pragma once
 
 /*
+Brother Bear runs KnowWonder's Harry Potter engine, so it takes every Harry Potter path, plus the
+two gamma entry points.
+*/
+#if BROTHERBEAR
+#define HARRYPOTTER 1
+#endif
+
+/*
 Engines older than Unreal Tournament's, oldest last:
 - Unreal Gold, Nerf, Unreal 224: no Flush argument, pure virtual Exec, no DetailTextures.
 - Klingon Honor Guard: minimal URenderDevice; no FTextureInfo::Texture. An ANSI build.

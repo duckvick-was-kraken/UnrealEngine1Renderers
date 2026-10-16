@@ -209,3 +209,14 @@ jobs:
           name: HarryPotter2.zip
           path: dist/HarryPotter2.zip
           archive: false
+
+      - name: Build Brother Bear
+        run: .venv/bin/python src/BuildRelease.py BrotherBear
+        shell: bash
+
+      - name: Upload BrotherBear.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: BrotherBear.zip
+          path: dist/BrotherBear.zip
+          archive: false

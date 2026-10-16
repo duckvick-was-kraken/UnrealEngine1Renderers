@@ -257,6 +257,11 @@ public:
 	}
 //@}
 #endif
+#if BROTHERBEAR
+	/** Pure virtual on this engine. Brightness is followed per frame, and the ramp restored on exit. */
+	void UpdateGamma() {}
+	void RestoreGamma() {}
+#endif
 	void DrawTile(FSceneNode *Frame, FTextureInfo &Info, FLOAT X, FLOAT Y, FLOAT XL, FLOAT YL, FLOAT U, FLOAT V, FLOAT UL, FLOAT VL, class FSpanBuffer *Span, FLOAT Z, FPlane Color, FPlane Fog, DWORD PolyFlags);
 	void Draw2DLine(FSceneNode *Frame, FPlane Color, DWORD LineFlags, FVector P1, FVector P2);
 	void Draw2DPoint(FSceneNode *Frame, FPlane Color, DWORD LineFlags, FLOAT X1, FLOAT Y1, FLOAT X2, FLOAT Y2, FLOAT Z);

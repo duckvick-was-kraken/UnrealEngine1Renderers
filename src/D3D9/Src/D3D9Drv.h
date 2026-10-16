@@ -17,7 +17,7 @@
 #include <d3d9.h>
 
 //Unused here.
-#if !defined UTGLR_HP_BUILD
+#if !defined UTGLR_HP_BUILD && !defined UTGLR_BROTHERBEAR_BUILD
 #define UTGLR_NO_APP_MALLOC
 #endif
 #include <stdlib.h>
