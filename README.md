@@ -19,12 +19,15 @@ DirectX 10 based on [prior work by Marijn Kentie](https://kentie.net/article/d3d
 These renderers are built for the following games:
  - Deus Ex
  - Harry Potter and the Philosopher's Stone
+ - Harry Potter and the Chamber of Secrets
  - Nerf Arena Blast
  - Rune 1.00/1.07
  - Star Trek The Next Generation: Klingon Honor Guard
  - Unreal 224
  - Unreal Gold 226
+ - Unreal 227 (OldUnreal community patch)
  - Unreal Tournament
+ - Unreal Tournament 469 (OldUnreal community patch)
  - X-Com: Enforcer
 
 ---

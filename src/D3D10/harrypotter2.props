@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Untracked per-machine game locations; see local.props.example. -->
+  <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')" />
+  <PropertyGroup Label="UserMacros">
+    <GAMENAME>HarryPotter2</GAMENAME>
+    <GAMEDIR>$(GAMEDIR_HARRYPOTTER2)</GAMEDIR>
+    <!--
+      Left empty, as for Harry Potter: the retail executable's name has not been checked against an
+      installation. deploy.ps1 skips its destination check for a game with no entry, while a wrong name
+      would make it refuse a correct install.
+    -->
+    <GAMEEXE></GAMEEXE>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <!--
+        Harry Potter and the Chamber of Secrets, engine 433 like the first game. Its URenderDevice has
+        the same fields and the same virtual slots as Harry Potter's, MaxVertices and DrawTriangles
+        included, so it takes HARRYPOTTER rather than a define of its own, as X-COM Enforcer takes
+        UNREALTOURNAMENT. The one addition, GetOsSurface, comes after every slot this renderer
+        overrides and is exported by this SDK's Engine.lib.
+
+        Unlike Harry Potter's, these headers compile clean under a conforming compiler, so neither of
+        its warning suppressions is repeated here.
+      -->
+      <PreprocessorDefinitions>HARRYPOTTER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="GAMENAME">
+      <Value>$(GAMENAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GAMEDIR">
+      <Value>$(GAMEDIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GAMEEXE">
+      <Value>$(GAMEEXE)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

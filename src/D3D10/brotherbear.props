@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Untracked per-machine game locations; see local.props.example. -->
+  <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')" />
+  <PropertyGroup Label="UserMacros">
+    <GAMENAME>BrotherBear</GAMENAME>
+    <GAMEDIR>$(GAMEDIR_BROTHERBEAR)</GAMEDIR>
+    <!--
+      Left empty, as for Harry Potter: the retail executable's name has not been checked against an
+      installation. deploy.ps1 skips its destination check for a game with no entry, while a wrong name
+      would make it refuse a correct install.
+    -->
+    <GAMEEXE></GAMEEXE>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <!--
+        Same as Harry Potter, 433. Its URenderDevice is Harry Potter 2's with two more pure virtuals,
+        UpdateGamma and RestoreGamma, and five more virtuals its Engine.lib exports.
+      -->
+      <PreprocessorDefinitions>BROTHERBEAR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="GAMENAME">
+      <Value>$(GAMENAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GAMEDIR">
+      <Value>$(GAMEDIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GAMEEXE">
+      <Value>$(GAMEEXE)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

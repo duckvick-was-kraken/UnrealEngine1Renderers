@@ -16,8 +16,10 @@
 #define DIRECT3D_VERSION 0x0900
 #include <d3d9.h>
 
-//Unused here and in the game SDKs.
+//Unused here.
+#if !defined UTGLR_HP_BUILD
 #define UTGLR_NO_APP_MALLOC
+#endif
 #include <stdlib.h>
 
 #include "Engine.h"

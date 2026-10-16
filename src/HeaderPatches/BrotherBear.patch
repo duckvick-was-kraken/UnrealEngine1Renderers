@@ -1,0 +1,54 @@
+--- Core/Inc/UnTemplate.h	Thu Oct 15 16:19:11 2026
++++ Core/Inc/UnTemplate.h	Thu Oct 15 16:30:30 2026
+@@ -5,6 +5,15 @@
+ 	Revision history:
+ 		* Created by Tim Sweeney
+ =============================================================================*/
++/*-----------------------------------------------------------------------------
++	Local corrections for linking against this game's Core.
++
++	FArray::Remove and FArray::Realloc taken from Harry Potter 1
++-----------------------------------------------------------------------------*/
+ 
+ /*-----------------------------------------------------------------------------
+ 	Type information.
+@@ -306,9 +315,37 @@
+ 		Ar.CountBytes( ArrayNum*ElementSize, ArrayMax*ElementSize );
+ 		unguardSlow;
+ 	}
+-	void Remove( INT Index, INT Count, INT ElementSize );
++	void Remove( INT Index, INT Count, INT ElementSize )
++	{
++		guardSlow(FArray::Remove);
++		if( Count>0 )
++		{
++			appMemmove
++			(
++				(BYTE*)Data + (Index      ) * ElementSize,
++				(BYTE*)Data + (Index+Count) * ElementSize,
++				(ArrayNum - Index - Count ) * ElementSize
++			);
++			ArrayNum -= Count;
++			if
++			(	(3*ArrayNum<2*ArrayMax || (ArrayMax-ArrayNum)*ElementSize>=16384)
++			&&	(ArrayMax-ArrayNum>64 || ArrayNum==0) )
++			{
++				ArrayMax = ArrayNum;
++				Realloc( ElementSize );
++			}
++		}
++		checkSlow(ArrayNum>=0);
++		checkSlow(ArrayMax>=ArrayNum);
++		unguardSlow;
++	}
+ protected:
+-	void Realloc( INT ElementSize );
++	void Realloc( INT ElementSize )
++	{
++		guard(FArray::Realloc);
++		Data = appRealloc( Data, ArrayMax*ElementSize, TEXT("FArray") );
++		unguardf(( TEXT("%i*%i"), ArrayMax, ElementSize ));
++	}
+ 	FArray( INT InNum, INT ElementSize )
+ 	:	ArrayNum( InNum )
+ 	,	ArrayMax( InNum )

@@ -198,3 +198,14 @@ jobs:
           name: UnrealTournament_469.zip
           path: dist/UnrealTournament_469.zip
           archive: false
+
+      - name: Build Harry Potter 2
+        run: .venv/bin/python src/BuildRelease.py HarryPotter2
+        shell: bash
+
+      - name: Upload HarryPotter2.zip
+        uses: actions/upload-artifact@v7
+        with:
+          name: HarryPotter2.zip
+          path: dist/HarryPotter2.zip
+          archive: false

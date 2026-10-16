@@ -59,14 +59,12 @@
 
 //OldUnreal renamed the clock(Timer)/unclock(Timer) macros to clockFast/unclockFast
 //(and clockSlow/unclockSlow). The D3D9 and OpenGL renderers still use the old names, so define
-//them here as aliases for the Fast variants.
-#if defined(UTGLR_UNREAL_227_BUILD) || defined(UTGLR_UT_469_BUILD)
-	#ifndef clock
-		#define clock(Timer)   {Timer -= appCycles();}
-	#endif
-	#ifndef unclock
-		#define unclock(Timer) {Timer += appCycles()-34;}
-	#endif
+//them here as aliases for the Fast variants. Newer reconstructed SDKs use the same scheme.
+#ifndef clock
+	#define clock(Timer)   {Timer -= appCycles();}
+#endif
+#ifndef unclock
+	#define unclock(Timer) {Timer += appCycles()-34;}
 #endif
 
 /*

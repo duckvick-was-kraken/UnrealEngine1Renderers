@@ -23,7 +23,7 @@ rem ============================================================================
 
 rem Every game with an SDK these renderers know how to target. This is the order the
 rem table below tries, and the order a "build all" walks.
-set "ALL_GAMES=UnrealTournament UnrealTournament_469 XComEnforcer DeusEx Rune Rune_100 Unreal_226_Gold Unreal_224 Unreal_227 Nerf HarryPotter Klingon"
+set "ALL_GAMES=UnrealTournament UnrealTournament_469 XComEnforcer DeusEx Rune Rune_100 Unreal_226_Gold Unreal_224 Unreal_227 Nerf HarryPotter Klingon HarryPotter2"
 
 if "%~1"=="" exit /b 0
 
@@ -89,6 +89,7 @@ if /i "%~1"=="Unreal_227"       set "GAMEDEF=UTGLR_UNREAL_227_BUILD"
 if /i "%~1"=="Nerf"             set "GAMEDEF=UTGLR_NERF_BUILD"
 if /i "%~1"=="HarryPotter"      set "GAMEDEF=UTGLR_HP_BUILD"
 if /i "%~1"=="Klingon"          set "GAMEDEF=UTGLR_KLINGON_BUILD"
+if /i "%~1"=="HarryPotter2"     set "GAMEDEF=UTGLR_HP_BUILD"
 if not defined GAMEDEF exit /b 1
 
 

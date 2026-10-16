@@ -97,6 +97,14 @@
       <Configuration>Klingon Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Harry Potter 2 Debug|Win32">
+      <Configuration>Harry Potter 2 Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Harry Potter 2 Release|Win32">
+      <Configuration>Harry Potter 2 Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8EFD8EED-00B7-49BA-A8B1-E74D6255796A}</ProjectGuid>
@@ -209,6 +217,15 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Deus Ex Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -384,6 +401,20 @@
     <Import Project="..\d3d10.props" />
     <Import Project="..\debug.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Render DLL.props" />
+    <Import Project="..\d3d10.props" />
+    <Import Project="..\harrypotter2.props" />
+    <Import Project="..\release.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Render DLL.props" />
+    <Import Project="..\d3d10.props" />
+    <Import Project="..\harrypotter2.props" />
+    <Import Project="..\debug.props" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
@@ -415,6 +446,8 @@
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Klingon Debug|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Nerf Arena Blast Release|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Klingon Release|Win32'">true</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Debug|Win32'">true</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Release|Win32'">true</GenerateManifest>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Rune 1.00 Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Rune 1.00 Release|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Deus Ex Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
@@ -440,6 +473,8 @@
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Klingon Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Nerf Arena Blast Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Klingon Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Debug|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Release|Win32'">..\Shaders;$(IncludePath);$(DirectXSdkDir)Include</IncludePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Deus Ex Debug|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Deus Ex Release|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Rune 1.00 Debug|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
@@ -463,6 +498,8 @@
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Klingon Debug|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Nerf Arena Blast Release|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Klingon Release|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Debug|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Release|Win32'">$(LibraryPath);$(DirectXSdkDir)Lib\x86</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Deus Ex Debug|Win32'">
     <ClCompile>
@@ -784,6 +821,31 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_USRDLL;D3D10DRV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Harry Potter 2 Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_USRDLL;D3D10DRV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>

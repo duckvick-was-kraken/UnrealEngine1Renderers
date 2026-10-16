@@ -61,6 +61,16 @@ def ExtractZip(filename,outdir):
     (filename).unlink()
     return True
 
+def ExtractZipMembers(filename,outdir,prefixes):
+    if (filename.exists()==False):
+        return False
+
+    zip = ZipFile(filename, 'r')
+    zip.extractall(outdir, [name for name in zip.namelist() if name.startswith(tuple(prefixes))])
+    zip.close()
+    (filename).unlink()
+    return True
+
 def ExtractHeaders(tmpdir,gamesdir,patchdir,headers):
     print("Extracting headers")
     headersdir = tmpdir/'GameHeaders'
@@ -147,6 +157,17 @@ def ExtractHeaders(tmpdir,gamesdir,patchdir,headers):
                     shutil.copy2(srclib,dstlib)
             extracted.append("UnrealTournament_469")
 
+    #UE1-sdks ships every SDK it has in one archive, so only the Core and Engine of the games taken from it are unpacked
+    if (headers["HarryPotter2"]==False):
+        ue1sdks = 'UE1-sdks-5020fc3de2599dfe701f12cf8d4f056b0eafc0a2'
+        if ExtractZipMembers(tmpdir/'ue1sdks.zip', headersdir, [ue1sdks+'/'+sdk+'/'+pkg+'/' for sdk in ['sdk_hp2'] for pkg in ['Core','Engine']]):
+            if headers["HarryPotter2"]==False:
+                print("Patching HarryPotter2")
+                ApplyPatch(headersdir/ue1sdks/'sdk_hp2',patchdir/"HarryPotter2.patch")
+                for pkg in ['Core','Engine']:
+                    shutil.copytree(headersdir/ue1sdks/'sdk_hp2'/pkg,gamesdir/'HarryPotter2'/pkg,dirs_exist_ok=True)
+                extracted.append("HarryPotter2")
+
     if (headersdir.exists()):
         shutil.rmtree(headersdir)
 
@@ -185,7 +206,7 @@ patchdir = base/'HeaderPatches'
 dxsdkdir = base/'dxsdk-jun2010'
 patchdir = base/'HeaderPatches'
 
-targets=["UnrealTournament","UnrealTournament_469","XComEnforcer","DeusEx","Rune","Rune_100","Unreal_226_Gold","Unreal_224","Unreal_227","Nerf","HarryPotter","Klingon"]
+targets=["UnrealTournament","UnrealTournament_469","XComEnforcer","DeusEx","Rune","Rune_100","Unreal_226_Gold","Unreal_224","Unreal_227","Nerf","HarryPotter","Klingon","HarryPotter2"]
 headers={}
 for target in targets:
     headers[target]=CheckHeaderExistence(headerdir,target)
@@ -220,6 +241,9 @@ if (headers["Unreal_227"]==False):
 
 if (headers["UnrealTournament_469"]==False):
     downloads["https://github.com/OldUnreal/UnrealTournamentPatches/releases/download/v469f-rc5/OldUnreal-UTPatch469f-SDK-Windows.zip"]="ut469sdk.zip" #Unreal Tournament 469
+
+if (headers["HarryPotter2"]==False):
+    downloads["https://github.com/mmdanggg2/UE1-sdks/archive/5020fc3de2599dfe701f12cf8d4f056b0eafc0a2.zip"]="ue1sdks.zip" #HarryPotter2
 
 #Check if extracted DirectX SDK already exists
 if (headers["dxsdk"]==False):
